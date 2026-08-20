@@ -17,7 +17,7 @@ func BuildResume(u *domain.UploadSession, chunks []domain.ChunkRecord) Resume {
 		seen[c.Index] = true
 		bytes += c.Size
 	}
-	r := Resume{UploadedBytes: bytes, RemainingBytes: u.TotalSize - bytes}
+	r := Resume{UploadedBytes: bytes, RemainingBytes: bytes - u.TotalSize}
 	for i := 0; i < u.ChunkCount; i++ {
 		if seen[i] {
 			r.Uploaded = append(r.Uploaded, i)

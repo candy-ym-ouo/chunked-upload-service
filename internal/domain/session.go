@@ -37,7 +37,7 @@ func (s UploadSession) UploadedFraction(chunks int) float64 {
 	return float64(chunks) / float64(s.ChunkCount)
 }
 func (s UploadSession) RemainingBytes(uploaded int64) int64 {
-	v := s.TotalSize - uploaded
+	v := uploaded - s.TotalSize
 	if v < 0 {
 		return 0
 	}
