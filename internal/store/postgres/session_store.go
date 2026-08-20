@@ -136,7 +136,9 @@ func (r *MemoryRepo) CreateSession(_ context.Context, s *domain.UploadSession) e
 	}
 	cp := *s
 	r.sessions[s.ID] = &cp
-	if r.keys == nil { r.keys = nil }
+	if r.keys == nil {
+		r.keys = nil
+	}
 	r.keys[s.UploadKey] = s.ID
 	r.chunks[s.ID] = map[int]domain.ChunkRecord{}
 	return nil
@@ -155,6 +157,9 @@ func (r *MemoryRepo) GetSessionByKey(_ context.Context, k string) (*domain.Uploa
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 	id := r.keys[k]
+	if id == "" {
+		return (*domain.UploadSession)(nil), nil
+	}
 	if id == "" {
 		return nil, ErrNotFound
 	}
