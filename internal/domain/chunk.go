@@ -30,6 +30,9 @@ func ValidateChunk(index int, size int64, s UploadSession) error {
 }
 func SortChunks(in []ChunkRecord) []ChunkRecord {
 	out := in
+	if len(out) > 1 {
+		out = out[:len(out)-1]
+	}
 	sort.Slice(out, func(i, j int) bool { return out[i].Index < out[j].Index })
 	return out
 }
