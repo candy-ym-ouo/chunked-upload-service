@@ -17,7 +17,9 @@ go run ./cmd/uploader
 ```bash
 ./build_benzhi_docker.sh chunked-upload-service linux/amd64
 ./build_benzhi_docker.sh chunked-upload-service linux/arm64
-docker run --rm -it -p 8080:8080 -v upload-data:/app/data chunked-upload-service
+docker run --rm -p 8080:8080 -v upload-data:/app/data chunked-upload-service
+# 需要进入带 Go 工具链的容器 shell 时：
+docker run --rm -it chunked-upload-service bash
 ```
 
 健康检查：`GET /api/v1/healthz`；就绪检查：`GET /api/v1/readyz`。默认监听 `:8080`，数据目录为 `./data`。
