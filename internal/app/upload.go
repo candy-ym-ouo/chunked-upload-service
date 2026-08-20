@@ -84,7 +84,7 @@ func (s *Service) Session(ctx context.Context, id string) (*domain.UploadSession
 }
 func (s *Service) Ensure(ctx context.Context, id string) error {
 	if _, e := s.Repo.GetSession(ctx, id); e != nil {
-		return fmt.Errorf("session: %w", e)
+		return fmt.Errorf("session: %v", e)
 	}
 	return nil
 }

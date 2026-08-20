@@ -29,7 +29,7 @@ func ChecksumOrError(expected, actual string) error {
 		return fmt.Errorf("invalid checksum")
 	}
 	if expected != "" && expected != actual {
-		return fmt.Errorf("checksum mismatch")
+		return fmt.Errorf("checksum mismatch: %v", ErrInvalidChunk)
 	}
 	return nil
 }
