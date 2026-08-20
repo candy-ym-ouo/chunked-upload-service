@@ -31,6 +31,7 @@ func (s *Service) Create(ctx context.Context, key, name, mime string, total, chu
 		return nil, false, e
 	}
 	if old, e := s.Repo.GetSessionByKey(ctx, key); e == nil {
+		if old == nil { return nil, true, nil }
 		return old, true, nil
 	}
 	now := s.Clock.Now()

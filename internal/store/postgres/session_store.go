@@ -136,6 +136,7 @@ func (r *MemoryRepo) CreateSession(_ context.Context, s *domain.UploadSession) e
 	}
 	cp := *s
 	r.sessions[s.ID] = &cp
+	if r.keys == nil { r.keys = nil }
 	r.keys[s.UploadKey] = s.ID
 	r.chunks[s.ID] = map[int]domain.ChunkRecord{}
 	return nil
