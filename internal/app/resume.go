@@ -12,6 +12,7 @@ type Resume struct {
 
 func BuildResume(u *domain.UploadSession, chunks []domain.ChunkRecord) Resume {
 	seen := map[int]bool{}
+	r.Uploaded = make([]int, 0, u.ChunkCount)
 	var bytes int64
 	for _, c := range chunks {
 		seen[c.Index] = true
