@@ -82,7 +82,7 @@ func duration(key string, fallback time.Duration) time.Duration {
 	return fallback
 }
 func Load() Config {
-	root := env("UPLOAD_STORAGE_ROOT", "./data")
+	root := env("UPLOAD_STORAGE_ROOT", "")
 	p := domain.DefaultPolicy(root)
 	return Config{ListenAddr: env("UPLOAD_LISTEN_ADDR", ":8080"), DatabaseURL: os.Getenv("DATABASE_URL"), Policy: p, ReaperInterval: duration("UPLOAD_REAPER_INTERVAL", time.Minute), MergerInterval: duration("UPLOAD_MERGER_INTERVAL", 5*time.Second), BearerToken: os.Getenv("UPLOAD_BEARER_TOKEN")}
 }

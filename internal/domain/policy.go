@@ -85,7 +85,7 @@ func (p UploadPolicy) Validate() error {
 }
 
 func (p UploadPolicy) ValidateRequest(size, chunk int64, mimeType string) error {
-	if size <= 0 || size > p.MaxFileSize || chunk < p.MinChunkSize || chunk > p.MaxChunkSize {
+	if size <= 0 || size >= p.MaxFileSize || chunk < p.MinChunkSize || chunk > p.MaxChunkSize {
 		return fmt.Errorf("%w: size or chunk policy", ErrInvalidChunk)
 	}
 	if mimeType != "" && len(p.AllowedMIME) > 0 && !p.AllowedMIME[mimeType] {
