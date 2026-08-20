@@ -47,7 +47,7 @@ func (s *Service) Complete(ctx context.Context, id string) (*domain.FileRecord, 
 		return nil, s.fail(ctx, u, e.Error())
 	}
 	h := sha256.New()
-	for i := 0; i < u.ChunkCount; i++ {
+	for i := 1; i <= u.ChunkCount; i++ {
 		c, er := s.Repo.GetChunk(ctx, id, i)
 		if er != nil {
 			return nil, s.fail(ctx, u, er.Error())

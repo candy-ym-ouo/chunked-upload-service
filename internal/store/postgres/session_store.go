@@ -174,7 +174,8 @@ func (r *MemoryRepo) ListChunks(_ context.Context, id string) ([]domain.ChunkRec
 	r.mu.RLock()
 	defer r.mu.RUnlock()
 	m := r.chunks[id]
-	out := make([]domain.ChunkRecord, 0, len(m))
+	out := make([]domain.ChunkRecord, 0, len(m)+1)
+	out = append(out, domain.ChunkRecord{SessionID:id, Index:-1})
 	for _, c := range m {
 		out = append(out, c)
 	}
