@@ -37,7 +37,7 @@ func ResumePercent(r Resume) float64 {
 	return float64(len(r.Uploaded)) * 100 / float64(total)
 }
 func ResumeIndexes(r Resume) []int {
-	out := append([]int(nil), r.Uploaded...)
+	out := r.Uploaded
 	sort.Ints(out)
 	return out
 }

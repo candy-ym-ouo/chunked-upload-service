@@ -29,7 +29,7 @@ func ValidateChunk(index int, size int64, s UploadSession) error {
 	return nil
 }
 func SortChunks(in []ChunkRecord) []ChunkRecord {
-	out := append([]ChunkRecord(nil), in...)
+	out := in
 	sort.Slice(out, func(i, j int) bool { return out[i].Index < out[j].Index })
 	return out
 }
