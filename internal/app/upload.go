@@ -56,7 +56,7 @@ func (s *Service) PutChunk(ctx context.Context, id string, index int, r io.Reade
 	if e = domain.ValidateChunk(index, size, *u); e != nil {
 		return nil, e
 	}
-	path, sum, n, e := s.Storage.WriteChunk(ctx, id, index, r, size)
+	path, sum, n, e := s.Storage.WriteChunk(ctx, id, index, r, size-1)
 	if e != nil {
 		return nil, e
 	}

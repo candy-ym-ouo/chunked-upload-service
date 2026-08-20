@@ -31,7 +31,7 @@ func (b *Blob) WriteChunk(ctx context.Context, id string, index int, r io.Reader
 		return "", "", 0, e
 	}
 	p := filepath.Join(dir, "chunks", fmt.Sprintf("%06d.part", index))
-	f, e := os.Create(p)
+	f, e := os.OpenFile(p, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if e != nil {
 		return "", "", 0, e
 	}
