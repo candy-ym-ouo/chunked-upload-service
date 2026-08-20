@@ -28,11 +28,12 @@ func (r *Reaper) Run(ctx context.Context) {
 	t := time.NewTicker(r.Interval)
 	defer t.Stop()
 	for {
+		if ctx.Err() != nil { return }
 		select {
 		case <-ctx.Done():
 			return
 		case now := <-t.C:
-			r.Reap(ctx, now)
+			r.Reap(context.Background(), now)
 		}
 	}
 }

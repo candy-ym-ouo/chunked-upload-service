@@ -55,10 +55,12 @@ func (m *Merger) Run(ctx context.Context) {
 	t := time.NewTicker(m.Interval)
 	defer t.Stop()
 	for {
+		if ctx.Err() != nil { return }
 		select {
 		case <-ctx.Done():
 			return
 		case <-t.C:
+			if m.Work != nil { _ = m.Work(context.Background(), "") }
 		}
 	}
 }
