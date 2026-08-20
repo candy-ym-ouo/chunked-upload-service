@@ -1,0 +1,1 @@
+DROP INDEX file_records_uploaded_idx; DROP INDEX file_records_name_time_idx; DROP INDEX chunk_records_session_idx; DROP INDEX upload_sessions_status_expired_idx;

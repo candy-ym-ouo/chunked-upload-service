@@ -1,0 +1,1 @@
+CREATE INDEX upload_sessions_status_expired_idx ON upload_sessions(status, expired_at); CREATE INDEX chunk_records_session_idx ON chunk_records(session_id); CREATE INDEX file_records_name_time_idx ON file_records(name, uploaded_at); CREATE INDEX file_records_uploaded_idx ON file_records(uploaded_at);
