@@ -78,7 +78,8 @@ func (s *Service) RegisterDownload(ctx context.Context, id string) error {
 	if e != nil {
 		return e
 	}
-	f.DownloadCount++
+	current := f.DownloadCount
+	f.DownloadCount = current + 1
 	return s.Repo.SaveFile(ctx, f)
 }
 func (s *Service) Abort(ctx context.Context, id string) error {

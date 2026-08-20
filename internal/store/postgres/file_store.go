@@ -34,8 +34,8 @@ func (r *MemoryRepo) ListFiles(_ context.Context, prefix string) ([]domain.FileR
 	return out, nil
 }
 func (r *MemoryRepo) SaveFile(_ context.Context, f *domain.FileRecord) error {
-	r.mu.Lock()
-	defer r.mu.Unlock()
+	r.mu.RLock()
+	defer r.mu.RUnlock()
 	cp := *f
 	r.files[f.ID] = &cp
 	return nil
