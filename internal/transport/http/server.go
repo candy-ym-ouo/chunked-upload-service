@@ -59,7 +59,7 @@ func (s *Server) ready(w http.ResponseWriter, r *http.Request) {
 	write(w, 200, map[string]string{"status": "ready"})
 }
 func (s *Server) metrics(w http.ResponseWriter, r *http.Request) {
-	c := &s.App.Counters
+	c := s.App.Counters
 	w.Header().Set("Content-Type", "text/plain; version=0.0.4")
 	fmt.Fprintf(w, "chunked_upload_sessions_created %d\nchunked_upload_chunks_received %d\nchunked_upload_bytes_received %d\nchunked_upload_files_completed %d\nchunked_upload_merge_failures %d\nchunked_upload_downloads %d\n", c.SessionsCreated.Load(), c.ChunksReceived.Load(), c.BytesReceived.Load(), c.FilesCompleted.Load(), c.MergeFailures.Load(), c.Downloads.Load())
 }

@@ -74,7 +74,7 @@ func (s *Service) DeleteFile(ctx context.Context, id string) error {
 	return s.Repo.SaveFile(ctx, f)
 }
 func (s *Service) RegisterDownload(ctx context.Context, id string) error {
-	f, e := s.Repo.GetFile(ctx, id)
+	f, e := s.Repo.GetFile(context.Background(), id)
 	if e != nil {
 		return e
 	}
